@@ -20,15 +20,15 @@ class MaxHeap {
     let i = this.items.indexOf(item);
     this.items[i] = this.items.pop();
     while (true) {
-      let lowerChild =
+      let higherChild =
         this.items[(i + 1) * 2] > this.items[(i + 1) * 2 - 1]
           ? (i + 1) * 2
           : (i + 1) * 2 - 1;
-      if (this.items[i] < this.items[lowerChild]) {
+      if (this.items[i] < this.items[higherChild]) {
         let temp = this.items[i];
-        this.items[i] = this.items[lowerChild];
-        this.items[lowerChild] = temp;
-        i = lowerChild;
+        this.items[i] = this.items[higherChild];
+        this.items[higherChild] = temp;
+        i = higherChild;
       } else break;
     }
     return this.items;
@@ -48,20 +48,20 @@ class MaxHeap {
       if (parents.length === 0) {
         return 'not in heap';
       }
-      if (this.items[Math.floor((parents[0] + 1) * 2 - 1)] === item) {
-        found = this.items[Math.floor((parents[0] + 1) * 2 - 1)];
+      if (this.items[(parents[0] + 1) * 2 - 1] === item) {
+        found = this.items[(parents[0] + 1) * 2 - 1];
         break;
       } else {
-        if (this.items[Math.floor((parents[0] + 1) * 2 - 1)]) {
-          parents.push(Math.floor((parents[0] + 1) * 2 - 1));
+        if (this.items[(parents[0] + 1) * 2 - 1]) {
+          parents.push((parents[0] + 1) * 2 - 1);
         }
       }
-      if (this.items[Math.floor((parents[0] + 1) * 2)] === item) {
-        found = this.items[Math.floor((parents[0] + 1) * 2)];
+      if (this.items[(parents[0] + 1) * 2] === item) {
+        found = this.items[(parents[0] + 1) * 2];
         break;
       } else {
-        if (this.items[Math.floor((parents[0] + 1) * 2)]) {
-          parents.push(Math.floor((parents[0] + 1) * 2));
+        if (this.items[(parents[0] + 1) * 2]) {
+          parents.push((parents[0] + 1) * 2);
         }
       }
       parents.shift();
