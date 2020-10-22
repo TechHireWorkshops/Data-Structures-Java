@@ -123,6 +123,47 @@ You might also see them together, like this:
 - Used to represent networks like phone systems
 - Used to visualize connected on social media sites
 
+## Hash Tables
+Hash tables are data structures where key-value pairs are stored in an array. The key is converted by a hash function into the index of the array, between 0 and the size of the array.
+
+![](https://www.tutorialspoint.com/data_structures_algorithms/images/hash_function.jpg)
+
+Maybe we're storing data using numerical values as a key, and we decide that our hash function will be:
+
+`index = key%20`
+
+A key of 33 gives us an index of 13, a key of 45 gives an index of 5, and so on.
+What problem will eventually arise?
+
+### Collisions
+Collisions occur when our has function produces the same index from 2 or more different keys. Collisions are unavoidable when hash tables reach larger sizes.  We have a few ways of dealing with them.
+
+#### Linear probing
+Using linear probing to deal with collisions means that in the case of a collision, we assign the next available index value to the key that caused the collision. With linear probing, we can only have hash tables of a certain size
+
+#### Chaining
+With chaining, each value in the hash table is an array.  In the case of collisions, the colliding value is added to array at the index its key produces.  This allows hash tables to grow to infinite size.
+
+### Basic functions
+
+- Insert - Insert a value into the table
+- Delete - Delete a value from the table
+- Search - Find a value in the table
+
+### Advantages of hash tables
+
+- Hash tables are extremely fast for accessing and storing data
+
+### Disadvantages of hash tables
+
+- Hash collisions will occur, requiring chaining, linear probing and/or resizing
+- Can not have a null key
+
+### Uses of hash tables
+
+- Used to implement database indexes
+- Used to implement associative arrays.
+
 ## Trees
 Trees are a data structure where data is organized and linked hierarchically. The nodes, or leaves, in a tree can be linked to more than 1 other node.  There are many types of trees, one of the most common is the binary search tree.
 
@@ -154,54 +195,3 @@ Each node in a tree has at least 3 properties:
 ### Uses of trees
 
 - Used in many search applications where data is constantly entering and leaving.
-
-## Heaps
-Heaps are a special case of binary tree where each parent node has the same relationship with each of its child nodes.
-
-Two of the most common are:
-
-**Min-heap**
-
-![](https://www.tutorialspoint.com/data_structures_algorithms/images/min_heap_example.jpg)
-
-**Max-heap**
-
-![](https://www.tutorialspoint.com/data_structures_algorithms/images/max_heap_example.jpg)
-
-While heaps can be constructed using nodes, as we say for our binary tree, they are often made from arrays, as they can be easier to work with.
-
-The max heap above can be written as
-
-	[44,42,35,33,31,19,27,10,26,14]
-	
-in which each child node is at
-
-	(i+1)*2 or (i+1)*2-1
-
-where i is the index of the parent node.
-
-Similarly, each parent node is at
-
-	Math.floor((i-1)/2)
-	
-when i is the index of the child node.
-
-### Basic functions
-
-- Insert - Insert a node into the tree
-- Delete - Delete a node from the tree
-- Search - Find a node in the tree
-
-### Advantages of heaps
-
-- Inserting and remove nodes from a heap takes O(log(N)) time complexity
-
-### Disadvantages of heaps
-
-- Searching heaps can be costly
-- Many heaps require unique node values
-
-### Uses of heaps
-
-- Used in heapsort
-- Used for priority queues
