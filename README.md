@@ -123,6 +123,38 @@ You might also see them together, like this:
 - Used to represent networks like phone systems
 - Used to visualize connected on social media sites
 
+## Trees
+Trees are a data structure where data is organized and linked hierarchically. The nodes, or leaves, in a tree can be linked to more than 1 other node.  There are many types of trees, one of the most common is the binary search tree.
+
+![](https://www.gatevidyalay.com/wp-content/uploads/2018/07/Binary-Search-Tree-Example.png)
+
+In a binary search tree, the child node to the left of any node is less than the parent, and the node to the right is greater.
+
+Each node in a tree has at least 3 properties:
+
+- The value stored in the node
+- The pointer to its left child node
+- The pointer to its right child node
+
+### Basic functions
+
+- Insert - Insert a node into the tree
+- Delete - Delete a node from the tree
+- Search - Find a node in the tree
+
+### Advantages of trees
+
+- The time complexity for any of the basic operations in a balanced tree is O(log(n))
+
+### Disadvantages of trees
+
+- Trees can become unbalanced and lose their efficiency in searches
+- In many types of trees, each node needs to be unique
+
+### Uses of trees
+
+- Used in many search applications where data is constantly entering and leaving.
+
 ## Hash Tables
 Hash tables are data structures where key-value pairs are stored in an array. The key is converted by a hash function into the index of the array, between 0 and the size of the array.
 
@@ -164,34 +196,3 @@ With chaining, each value in the hash table is an array.  In the case of collisi
 - Used to implement database indexes
 - Used to implement associative arrays.
 
-## Trees
-Trees are a data structure where data is organized and linked hierarchically. The nodes, or leaves, in a tree can be linked to more than 1 other node.  There are many types of trees, one of the most common is the binary search tree.
-
-![](https://www.gatevidyalay.com/wp-content/uploads/2018/07/Binary-Search-Tree-Example.png)
-
-In a binary search tree, the child node to the left of any node is less than the parent, and the node to the right is greater.
-
-Each node in a tree has at least 3 properties:
-
-- The value stored in the node
-- The pointer to its left child node
-- The pointer to its right child node
-
-### Basic functions
-
-- Insert - Insert a node into the tree
-- Delete - Delete a node from the tree
-- Search - Find a node in the tree
-
-### Advantages of trees
-
-- The time complexity for any of the basic operations in a balanced tree is O(log(n))
-
-### Disadvantages of trees
-
-- Trees can become unbalanced and lose their efficiency in searches
-- In many types of trees, each node needs to be unique
-
-### Uses of trees
-
-- Used in many search applications where data is constantly entering and leaving.
