@@ -21,7 +21,7 @@ public class Queue {
 
     System.out.println("Removing " + arr[front]);
 
-    front = (front + 1) % capacity;
+    front=(front +1)%capacity;
     count--;
   }
 
@@ -33,7 +33,7 @@ public class Queue {
 
     System.out.println("Inserting " + item);
 
-    rear = (rear + 1) % capacity;
+    rear=(rear +1)%capacity;
     arr[rear] = item;
     count++;
   }
@@ -63,20 +63,27 @@ public class Queue {
     q.enqueue(1);
     q.enqueue(2);
     q.enqueue(3);
-
-
-    System.out.println("Front element is: " + q.peek());
+    q.enqueue(4);
+    q.enqueue(5);
     q.dequeue();
-    System.out.println("Front element is: " + q.peek());
-
-    System.out.println("Queue size is " + q.size());
-
-    q.dequeue();
+    q.enqueue(6);
     q.dequeue();
 
-    if (q.isEmpty())
-      System.out.println("Queue Is Empty");
-    else
-      System.out.println("Queue Is Not Empty");
+    System.out.println("===============================");
+
+    // System.out.println("Front element is: " + q.peek());
+    // q.dequeue();
+    // System.out.println("Front element is: " + q.peek());
+
+    q.dequeue();
+
+    for (int i = 0; i < q.arr.length; i++) {
+      System.out.println(q.arr[i]);
+    }
+
+  //   if (q.isEmpty())
+  //     System.out.println("Queue Is Empty");
+  //   else
+  //     System.out.println("Queue Is Not Empty");
   }
 }

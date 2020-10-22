@@ -11,9 +11,9 @@ class Graph {
     adj.put(i, new ArrayList<Integer>());
   }
 
-  public void addEdge(int u, int v) {
-    adj.get(u).add(v);
-    adj.get(v).add(u);
+  public void addEdge(int i, int j) {
+    adj.get(i).add(j);
+    adj.get(j).add(i);
   }
 
   public void removeVertex(int i) {
@@ -45,6 +45,7 @@ class Graph {
     myGraph.addEdge(1, 4);
     myGraph.addEdge(2, 3);
     myGraph.addEdge(3, 4);
+    // myGraph.removeEdge(1, 2);
     myGraph.removeVertex(1);
     System.out.println(myGraph.adj);
   }

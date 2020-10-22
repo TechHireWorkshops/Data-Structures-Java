@@ -19,7 +19,7 @@ class HashTable<K, V> {
   private int numBuckets;
 
   public HashTable(int bucketNum) {
-    bucketArray = new ArrayList<>();
+    bucketArray = new ArrayList<HashNode<K, V>>();
     numBuckets = bucketNum;
 
     for (int i = 0; i < numBuckets; i++)
@@ -36,42 +36,38 @@ class HashTable<K, V> {
 
   public V remove(K key) {
     int bucketIndex = getBucketIndex(key);
-    HashNode<K, V> head = bucketArray.get(bucketIndex);
-    HashNode<K, V> prev = null;
-    while (head != null) {
-      // If Key found
-      if (head.key.equals(key))
-        break;
-
-      // Else keep moving in chain
-      prev = head;
-      head = head.next;
+    HashNode<K, V> current = bucketArray.get(bucketIndex);
+    HashNode<K, V> previous = null;
+    while (current != null) {
+      if (current.key.equals(key)) {
+        if (previous != null) {
+          previous.next = current.next;
+          current.next.prev = previous;
+          current.prev = null;
+          current.next = null;
+        } else {
+          bucketArray.set(bucketIndex, current.next);
+        }
+        return current.value;
+      }
     }
+    previous = current;
+    current = current.next;
+    return null;
 
-    // If key was not there
-    if (head == null)
-      return null;
-
-    // Remove key
-    if (prev != null)
-      prev.next = head.next;
-    else
-      bucketArray.set(bucketIndex, head.next);
-
-    return head.value;
   }
 
   // Returns value for a key
   public V get(K key) {
     // Find head of chain for given key
     int bucketIndex = getBucketIndex(key);
-    HashNode<K, V> head = bucketArray.get(bucketIndex);
+    HashNode<K, V> current = bucketArray.get(bucketIndex);
 
     // Search key in chain
-    while (head != null) {
-      if (head.key.equals(key))
-        return head.value;
-      head = head.next;
+    while (current != null) {
+      if (current.key.equals(key))
+        return current.value;
+      current = current.next;
     }
 
     // If key not found
@@ -80,24 +76,20 @@ class HashTable<K, V> {
 
   // Adds a key value pair to hash
   public void add(K key, V value) {
-    // Find head of chain for given key
     int bucketIndex = getBucketIndex(key);
-    HashNode<K, V> head = bucketArray.get(bucketIndex);
-
-    // Check if key is already present
-    while (head != null) {
-      if (head.key.equals(key)) {
-        head.value = value;
-        return;
-      }
-      head = head.next;
-    }
-
-    // Insert key in chain
-    head = bucketArray.get(bucketIndex);
+    HashNode<K, V> current = bucketArray.get(bucketIndex);
     HashNode<K, V> newNode = new HashNode<K, V>(key, value);
-    newNode.next = head;
-    bucketArray.set(bucketIndex, newNode);
+    if (current == null) {
+      bucketArray.set(bucketIndex, newNode);
+      return;
+    }
+    HashNode<K, V> previous = null;
+    while (current != null) {
+      previous = current;
+      current = current.next;
+    }
+    previous.next = newNode;
+    newNode.prev = previous;
   }
 
   public static void main(String[] args) {
@@ -106,8 +98,16 @@ class HashTable<K, V> {
     hashTable.add("coder", 2);
     hashTable.add("this", 4);
     hashTable.add("hi", 5);
+    // for (int i = 0; i < hashTable.bucketArray.size(); i++) {
+    // System.out.println(hashTable.bucketArray.get(i));
+    // }
+    System.out.println(hashTable.bucketArray.get(0).value);
+    System.out.println(hashTable.bucketArray.get(0).next.value);
     System.out.println(hashTable.remove("this"));
-    System.out.println(hashTable.remove("this"));
+    System.out.println(hashTable.bucketArray.get(0).value);
+    // System.out.println(hashTable.remove("this"));
+    // System.out.println(hashTable.bucketArray.get(0).value);
+    // System.out.println(hashTable.remove("this"));
 
   }
 }

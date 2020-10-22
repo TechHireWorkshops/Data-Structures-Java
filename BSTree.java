@@ -9,8 +9,8 @@ public class BSTree {
 
     Node(int value) {
       this.value = value;
-      right = null;
-      left = null;
+      this.right = null;
+      this.left = null;
     }
   }
 
@@ -21,7 +21,7 @@ public class BSTree {
   }
 
   public void add(int value) {
-    root = addRecursive(root, value);
+    root = addRecursive(this.root, value);
   }
 
   private Node addRecursive(Node current, int value) {
@@ -41,20 +41,18 @@ public class BSTree {
   }
 
   public boolean findNode(int value) {
-    return findNodeRecursive(root, value);
-}
+    return findNodeRecursive(this.root, value);
+  }
 
   private boolean findNodeRecursive(Node current, int value) {
     if (current == null) {
-        return false;
-    } 
+      return false;
+    }
     if (value == current.value) {
-        return true;
-    } 
-    return value < current.value
-      ? findNodeRecursive(current.left, value)
-      : findNodeRecursive(current.right, value);
-}
+      return true;
+    }
+    return value < current.value ? findNodeRecursive(current.left, value) : findNodeRecursive(current.right, value);
+  }
 
   public static void main(String[] args) {
     BSTree bt = new BSTree();
@@ -66,5 +64,6 @@ public class BSTree {
     bt.add(5);
     bt.add(7);
     bt.add(9);
+    System.out.println(bt.findNode(1));
   }
 }

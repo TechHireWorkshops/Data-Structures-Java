@@ -36,5 +36,18 @@ public class Stack {
     theStack.push(30);
     theStack.push(40);
     theStack.push(50);
+    theStack.pop();
+    theStack.pop();
+    theStack.pop();
+    theStack.pop();
+    theStack.pop();
+    theStack.push(1);
+    theStack.push(2);
+    theStack.push(3);
+    theStack.push(4);
+    theStack.push(5);
+    for(int i =0;i<theStack.stackArray.length;i++){
+      System.out.println(theStack.stackArray[i]);
+    }
   }
 }
