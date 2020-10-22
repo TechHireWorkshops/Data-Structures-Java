@@ -9,18 +9,18 @@ class HashNode<K, V> {
   public HashNode(K key, V value) {
     this.key = key;
     this.value = value;
+    this.next = null;
+    this.prev = null;
   }
 }
 
 class HashTable<K, V> {
   private ArrayList<HashNode<K, V>> bucketArray;
   private int numBuckets;
-  private int size;
 
   public HashTable(int bucketNum) {
     bucketArray = new ArrayList<>();
     numBuckets = bucketNum;
-    size = 0;
 
     for (int i = 0; i < numBuckets; i++)
       bucketArray.add(null);
@@ -51,9 +51,6 @@ class HashTable<K, V> {
     // If key was not there
     if (head == null)
       return null;
-
-    // Reduce size
-    size--;
 
     // Remove key
     if (prev != null)

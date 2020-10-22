@@ -1,22 +1,14 @@
 import java.util.*;
 
 class Graph {
-  ArrayList<ArrayList<Integer>> adj;
+  Map<Integer, ArrayList<Integer>> adj;
 
   public Graph() {
-    adj = new ArrayList<ArrayList<Integer>>();
+    this.adj = new HashMap<Integer, ArrayList<Integer>>();
   }
 
   public void addVertex(int i) {
-    adj.add(new ArrayList<Integer>(i));
-  }
-
-  public void removeVertex(int i) {
-    ArrayList<Integer> currentVertex = adj.get(i);
-    for (int j = 0; j < currentVertex.size(); j++) {
-      removeEdge(i, currentVertex.get(j));
-    }
-    adj.remove(i);
+    adj.put(i, new ArrayList<Integer>());
   }
 
   public void addEdge(int u, int v) {
@@ -24,20 +16,19 @@ class Graph {
     adj.get(v).add(u);
   }
 
-  public void removeEdge(int u, int v) {
-    adj.get(u).remove(adj.get(u).indexOf(v));
-    adj.get(v).remove(adj.get(v).indexOf(u));
+  public void removeVertex(int i) {
+    ArrayList<Integer> currentVertex = adj.get(i);
+    for (int j = 0; j < currentVertex.size(); j++) {
+      int neighbor = currentVertex.get(j);
+      this.adj.get(neighbor).remove(this.adj.get(neighbor).indexOf(i));
+    }
+    adj.remove(i);
   }
 
-  public void printGraph() {
-    for (int i = 0; i < adj.size(); i++) {
-      System.out.println("\nAdjacency list of vertex" + i);
-      System.out.print("head");
-      for (int j = 0; j < adj.get(i).size(); j++) {
-        System.out.print(" -> " + adj.get(i).get(j));
-      }
-      System.out.println();
-    }
+  public void removeEdge(int i, int j) {
+
+    adj.get(i).remove(adj.get(i).indexOf(j));
+    adj.get(j).remove(adj.get(j).indexOf(i));
   }
 
   public static void main(String[] args) {
@@ -54,8 +45,7 @@ class Graph {
     myGraph.addEdge(1, 4);
     myGraph.addEdge(2, 3);
     myGraph.addEdge(3, 4);
-    myGraph.removeEdge(1,3);
-
-    myGraph.printGraph();
+    myGraph.removeVertex(1);
+    System.out.println(myGraph.adj);
   }
 }
