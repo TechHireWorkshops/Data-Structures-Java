@@ -50,9 +50,9 @@ class HashTable<K, V> {
         }
         return current.value;
       }
+      previous = current;
+      current = current.next;
     }
-    previous = current;
-    current = current.next;
     return null;
 
   }
