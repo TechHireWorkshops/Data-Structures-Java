@@ -54,6 +54,8 @@ Stacks, like arrays, are also a collection of similar data. In a stack though, d
 - Stacks are used for function calls
 - Stacks are used for undo functions
 
+[Stack implementation in java](https://www.geeksforgeeks.org/stack-class-in-java/)
+
 ## Queues
 Queues are a similar structure to stacks, only with a First In First Out (FIFO) structure
 
@@ -78,6 +80,65 @@ Queues are a similar structure to stacks, only with a First In First Out (FIFO) 
 
 - Many types of waiting room scenarios
 - A shared resource like an office printer
+
+[Queue implementation in java](https://www.geeksforgeeks.org/queue-interface-java/)
+
+## Linked Lists
+Linked lists are a linear data structure.  The function similarly to an array, though each element in a linked list exists separately, with pointed from one to the next.  The elements in a linked list are called nodes.
+
+Each nodes contains 2 things: the data stored in the node, and the pointer to the next node.  The head is the first node, and the last node point to null
+
+![](https://res.cloudinary.com/dvj2hbywq/image/upload/v1590572188/Group_14_5_bvpwu0.png)
+
+There are three types of linked list
+
+ - Singly linked list - The linked list described above, where each node points to the next, from head to null
+ - Doubly linked list - A linked list where each node has a pointer to both the next and previous node
+ - Circular linked list - A linked list where the last node points back to the head
+
+A linked list might look like this:
+
+```
+const list = {
+    head: {
+        value: 6
+        next: {
+            value: 10                                             
+            next: {
+                value: 12
+                next: {
+                    value: 3
+                    next: null	
+                    }
+                }
+            }
+        }
+    }
+};
+```
+
+### Basic functions
+
+- Insert - Insert a node into the list
+- Delete - Delete a node from the list
+- Search - Find a node in the list, either by index or value
+
+### Advantages of linked lists
+
+- Nodes can be added or removed from a linked list with a time complexity of O(1)
+
+### Disadvantages of linked lists
+
+- It uses more memory than an array due to storage of the pointer
+- Searching through a linked list is slow, can only traverse through the list and not access from anywhere
+
+### Uses of linked lists
+
+- We can use linked list to create stacks and queues
+- Dynamic memory allocation
+- Performing arithmetic operations on long integers
+
+[Linked List implementation in java](https://www.geeksforgeeks.org/linked-list-in-java/)
 
 ## Graphs
 Graphs are non-linear systems of data points connected to each other. The data exists as a series of nodes, or vertices, connected to each other by edges.
@@ -174,7 +235,7 @@ Collisions occur when our has function produces the same index from 2 or more di
 Using linear probing to deal with collisions means that in the case of a collision, we assign the next available index value to the key that caused the collision. With linear probing, we can only have hash tables of a certain size
 
 #### Chaining
-With chaining, each value in the hash table is an array.  In the case of collisions, the colliding value is added to array at the index its key produces.  This allows hash tables to grow to infinite size.
+With chaining, each value in the hash table is an array.  In the case of collisions, the colliding value is added to array at the index its key produces.  This allows hash tables to grow past the number of indices in the table.
 
 ### Basic functions
 
@@ -195,4 +256,6 @@ With chaining, each value in the hash table is an array.  In the case of collisi
 
 - Used to implement database indexes
 - Used to implement associative arrays.
+
+[Hash table implementation in java](https://www.geeksforgeeks.org/hashtable-in-java/)
 

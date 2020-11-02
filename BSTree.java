@@ -1,5 +1,3 @@
-import java.util.*;
-
 public class BSTree {
 
   private class Node {
@@ -17,7 +15,7 @@ public class BSTree {
   Node root;
 
   public BSTree() {
-    root = null;
+    this.root = null;
   }
 
   public void add(int value) {
@@ -54,6 +52,8 @@ public class BSTree {
     return value < current.value ? findNodeRecursive(current.left, value) : findNodeRecursive(current.right, value);
   }
 
+  
+
   public static void main(String[] args) {
     BSTree bt = new BSTree();
 
@@ -64,6 +64,6 @@ public class BSTree {
     bt.add(5);
     bt.add(7);
     bt.add(9);
-    System.out.println(bt.findNode(1));
+    System.out.println(bt.root.right.value);
   }
 }
